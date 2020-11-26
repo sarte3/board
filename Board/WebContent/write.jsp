@@ -7,16 +7,44 @@
 <title>Insert title here</title>
 <style>
 	#btn {
-	width:150px;
-	height:40px;
-	border:1px solid #f15657;
-	background:#f15657;
-	color:white;
+		width:150px;
+		height:40px;
+		border:1px solid #f15657;
+		background:#f15657;
+		color:white;
 	}
 </style>
+<script>
+function check(my) 
+{
+	if(my.pwd.value!=my.pwd2.value)
+	{
+		alert("비번이 틀립니다");
+		return false;
+	}else{
+		return true;
+	}
+	
+}
+
+function pwd_check(my)
+{
+	if(my.pwd.value!=my.pwd2.value)
+	{
+		document.getElementById("msg").innerText="비번이 틀립니다";
+		document.getElementById("msg").style.color="red";
+		
+	}
+	else
+	{
+		document.getElementById("msg").innerText="비번이 같습니다";
+		document.getElementById("msg").style.color="blue";
+	}	
+}
+</script>
 </head>
 <body>
-<form method="post" action="write_ok.jsp">
+<form method="post" action="write_ok.jsp" onsubmit="return check(this)">
 	<table width="600" align="center">
 		<tr>
 			<td>제목</td>
@@ -36,7 +64,8 @@
 		</tr>
 		<tr>
 			<td>비밀번호 확인</td>
-			<td><input type="password" name="pwd2"></td>
+			<td><input type="password" name="pwd2" onkeyup="pwd_check(this.form)">
+			<span id="msg"></span></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
